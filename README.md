@@ -5,13 +5,17 @@
 `envoy-perf-pprof` takes `perf` data collected for an Envoy process and launches [pprof](https://github.com/google/pprof/) for it.
 Takes care of installing required dependencies in Docker and handling Envoy symbolization.
 
-![Envoy flamegraph example](example.png "Envoy flamegraph example")
+## Example
+
+Call `./envoy-perf-pprof.sh v1.17.0 example/example.perf` to play with an example profile.
+
+![Envoy flamegraph example](example/example.png "Envoy flamegraph example")
 
 ## Usage
 
 ### Collect `perf` data
 
-Run `perf` on the machine running Envoy, e.g. a 10 minutes profile, as described
+Run `perf` on the machine running an official Envoy binary, e.g. a 10 minutes profile, as described
 in [Envoy docs](https://github.com/envoyproxy/envoy/blob/main/bazel/PPROF.md#on-cpu-analysis):
 
 ```bash
