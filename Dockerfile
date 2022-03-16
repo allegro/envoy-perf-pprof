@@ -13,6 +13,8 @@ RUN bazel build src:perf_to_profile
 RUN cp bazel-bin/src/perf_to_profile /usr/bin/.
 
 FROM golang:latest
+# perf_to_profile is dynamically linked against libelf
+COPY --from=perf_data_converter /usr/lib/x86_64-linux-gnu/libelf.so /usr/lib/x86_64-linux-gnu/libelf.so
 COPY --from=perf_data_converter /usr/bin/perf_to_profile /usr/bin/perf_to_profile
 COPY --from=envoy /usr/local/bin/envoy /usr/local/bin/envoy
 
