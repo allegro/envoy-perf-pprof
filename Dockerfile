@@ -16,7 +16,7 @@ FROM golang:latest
 COPY --from=perf_data_converter /usr/bin/perf_to_profile /usr/bin/perf_to_profile
 COPY --from=envoy /usr/local/bin/envoy /usr/local/bin/envoy
 
-RUN apt update && apt install -y graphviz
-RUN go get -u github.com/google/pprof
+RUN apt update && apt install -y graphviz libelf-dev
+RUN go install github.com/google/pprof@latest
 
 ENTRYPOINT ["pprof", "-http=0.0.0.0:8888", "/usr/local/bin/envoy"]
